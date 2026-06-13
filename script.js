@@ -25,7 +25,7 @@ let questions = []
 
 let categorymap = {
    'Maths': 19,
-   'G.K.': 9,
+   'GK': 9,
    'JAVASCRIPT': 18
 
 }
