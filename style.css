@@ -104,6 +104,25 @@ body::after{
     width: 8px;
     border-radius: 50%;
     background-color: #06ffa5;
+    box-shadow: 0 0 8px #06ffa5;
+    animation: dotglow 2s infinite ease-in-out;
+}
+@keyframes dotglow{
+   0%{
+    transform: scale(1);
+    box-shadow: 0 0 5px #06ffa5;
+}
+
+50%{
+    transform: scale(1.3);
+    box-shadow: 0 0 15px #06ffa5;
+}
+
+100%{
+    transform: scale(1);
+    box-shadow: 0 0 5px #06ffa5;
+}
+
 }
 
 
