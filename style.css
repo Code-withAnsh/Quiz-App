@@ -267,20 +267,25 @@ p{
 }
 @media(max-width:768px){
     #home{
-        width: 310px;
+       
         border-radius: 10px;
+        padding: 32px 24px;
+        position: relative;
+
+    z-index: 10;
     }
-    #form{
-        font-size: 10px;
-    }
+   
     #sub{
         margin-right: 20%;
     }
-    #cat{
-        align-items: center;
-        display: flex;
-        color: white;
-    }
+  
+    h2{
+    font-size: 28px;
+}
+body::before,
+body::after{
+    pointer-events: none;
+}
 }
 #quiz{
     height: auto;
