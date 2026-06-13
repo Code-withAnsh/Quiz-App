@@ -19,7 +19,7 @@ let playagain = document.querySelector('#playagain')
 let scorehistory = document.querySelector('#scorehistory')
 let userhistory = document.querySelector('#userhistory')
 let hist = document.querySelector('#hist')
-
+let homebutton = document.querySelector('#homebutton')
 
 let questions = []
 
@@ -327,17 +327,17 @@ testsubmit.addEventListener('click', function () {
    let history = JSON.parse(localStorage.getItem('history')) || []
    let existingUser = history.find((entry)=>entry.name === studentName)
 if(existingUser){
-   console.log(history.existingUser);
+   let information = {score:score.innerText,Date: new Date()}
+   existingUser.attempts.push(information)
    
 }else{
    let newResult = {
     name:studentName,
-    score:score.innerText,
-    date: new Date()
+    attempts:[
+        {score:score.innerHTML,Date: new Date()}
+    ]
 }
 history.push(newResult)
-
-
 
 }
 localStorage.setItem('history', JSON.stringify(history))
@@ -346,14 +346,13 @@ localStorage.setItem('history', JSON.stringify(history))
    
 
 })
-
-playagain.addEventListener('click',function(){
-   result.style.display = 'none'
+function resetQuiz(){
+        result.style.display = 'none'
    home.style.display = 'block'
    currentIndex= 0
    name.value = ''
    timing = 0
-   count = 0
+   count = 30
    leftTime = []
    incorectanswer = 0
    skipedanswer = 0
@@ -361,16 +360,45 @@ playagain.addEventListener('click',function(){
    testsubmit.innerHTML = ''
    ul.innerHTML = ''
 score.innerText = ''
+scorehistory.style.display = 'none'
 
+}
+
+playagain.addEventListener('click',function(){
+ resetQuiz()
 })
+
 userhistory.addEventListener('click',function(){
    scorehistory.style.display = 'block'
+   result.style.display = 'none'
    let previousInfo = JSON.parse(localStorage.getItem('history'))
    console.log(previousInfo);
-   
-//    for(let i=0;i<previousInfo.length;i++){
-// let li = previousInfo[i]
-// console.log(li.score);
-//    }
+   hist.innerHTML = ''
+   homebutton.innerHTML = ''
+   for(let i = 0; i < previousInfo.length; i++){
+    let li = document.createElement('li')
+    li.innerText = previousInfo[i].name
+    hist.appendChild(li)
+    for(let j=0;j<previousInfo[i].attempts.length;j++){
+        let li1 = document.createElement('li')
+        li1.innerText = previousInfo[i].attempts[j].score
+        hist.appendChild(li1)
+        let li2 = document.createElement('li')
+        li2.innerText = previousInfo[i].attempts[j].Date
+        hist.appendChild(li2)
+        
+    }
+}
+let homeBtn = document.createElement('button')
+homeBtn.innerText = 'Home'
+homeBtn.style.padding = '5px'
+homeBtn.style.border = '2px solid black'
+homeBtn.style.borderRadius = '7px'
+homeBtn.style.backgroundColor = 'gold'
+homeBtn.style.color = 'white'
+homebutton.appendChild(homeBtn)
+homeBtn.addEventListener('click',function(){
+resetQuiz()
+})
 
 })
