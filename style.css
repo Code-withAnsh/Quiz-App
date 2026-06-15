@@ -303,7 +303,7 @@ transition: width 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .option-text{
-    flex: 1.2; /* jitni space bachi hai wo le lega */
+    flex: 1; /* jitni space bachi hai wo le lega */
 }
 
 .radio-btn{
