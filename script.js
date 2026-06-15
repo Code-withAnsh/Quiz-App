@@ -84,13 +84,13 @@ function questionRender() {
       //aur wo sab div ke inner text me aa gya then ab div ko question ke andar append kara do 
       let div = document.createElement('div')
 
-     div.innerHTML = `
-    <span>${letters[index]}.</span>
-    <span class="option-text">${opt}</span>
-    <input class="radio-btn" type="radio" name="option">
-`;
+div.innerHTML = `
+<span>${letters[index]}.</span>
+<span>${opt}</span>
+`
 
 div.classList.add('option');
+div.dataset.index = index
       question.appendChild(div)
       quesno.innerText = 'Q' + (currentIndex + 1) + '/' + filtered.length
       div.addEventListener('click', function () {
